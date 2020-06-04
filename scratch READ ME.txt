@@ -1,0 +1,69 @@
+Documentation
+
+Variables:
+    game_over - states whether the game is over or not - global variable
+
+    level_pass_score - this is the score needed to pass the level, it increases as levels are passed - global variable
+
+    move_speed - this is the speed that the cyclists move, it increases as levels are passed - global variable
+
+    dead_count - the number of dead cyclists - global variable
+
+    extras_needed - the number of extra cyclists that need to be spawned after the original 5, it increases 
+                    as the players pass levels - global variable
+
+    extra_made - the number of extras made during the level - global variable 
+
+    is_dead - states whether the cyclist is dead or not - local to each cyclist sprite
+
+    score - states the number of kill the player got
+
+    level - states the current level of the player
+
+Broadcasts:
+    init_game - is broadcasted at the start of the game to initialize variables 
+                and the state of the characters
+    move - broadcasted to make the players move 
+    shot_fired - broadcasted when the screen is clicked
+    level_passed - broadcasted whenever a level is passed 
+
+functions:
+
+init_game 
+
+    This function initializes all the variables and sets the state of the characters.
+    For the shooter sprite, global variables are initialized, the backdrop is set, the 
+    necessary variables score and level are displayed, and the shooter costume is set.
+    For all sprites, local variables are initialized and the starting position if the sprite 
+    is set.
+
+level_passed
+
+    This function updates global variables in the shooter sprite such as increasing the level 
+    variable by 1, increasing move_speed by 0.3, and increasing the number of extras needed by 1.
+    Level score pass is also increased by 1 and dead_count is set to 0
+    For cyclists, this function resets the position and sets the sprite to an alive state.
+
+sprite clicked
+
+    Every cyclist has this function. The procedures only execute if the cyclist is alive and the 
+    game is not over. If these conditions are true, the cyclist will be set to a dead state and the 
+    score of the player will be increased. dead_count will also be increased by 1.
+
+move 
+
+    This function handles cyclist movement. If the cyclist is alive, it will be moved. Once moved,
+    the function checks if the cyclist is close enough to the shooter to end the game. 
+
+    If the cyclist is dead, there are extra cyclists needed, and there are not enough extras made, 
+    the cyclist will be reset to an alive state and to its original position. The extras variable 
+    is increased by 1.
+
+Notes:
+
+There are only 5 cyclist models. When a level requires more than 5 cyclists, some of the killed cyclists 
+are respawned.
+
+While is_dead is named the same for every cyclist, each variable is local to a specific cyclist
+
+
