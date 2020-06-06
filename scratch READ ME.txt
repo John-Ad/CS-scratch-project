@@ -1,5 +1,9 @@
 Documentation
 
+Project description: this is a game where the player clicks on moving enemies to kill them before they reach the main character. 
+                     As the player progresses through the levels, the enemies move faster and the number of enemies that need to be 
+                     killed increases.
+
 Variables:
     game_over - states whether the game is over or not - global variable
 
